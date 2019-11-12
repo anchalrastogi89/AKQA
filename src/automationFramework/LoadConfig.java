@@ -32,14 +32,19 @@ public class LoadConfig
 		InputStream input = new FileInputStream(Paths.get(".").toAbsolutePath().normalize().toString()+"/resources/config.properties");
 
         Properties prop = new Properties();
-        // load a properties file
+        // load the properties file
         prop.load(input);
         
-        // get the property value and print it out
-        this.env = prop.getProperty("test.env", prop.getProperty("default.env"));
-//        this.driverPath = prop.getProperty("chromedriver.path", prop.getProperty("defaultdriver.path"));
-        this.driverPath = new StringBuilder(Paths.get(".").toAbsolutePath().normalize().toString())
+        // get the environment value
+        this.env = prop.getProperty("test.env", prop.getProperty("default.env"));        
+        if (System.getProperty("os.name").startsWith("Mac")) {
+        	this.driverPath = new StringBuilder(Paths.get(".").toAbsolutePath().normalize().toString())
         										.append("/resources/chromedriver").toString();
+        }
+        else if (System.getProperty("os.name").startsWith("Windows")) {
+        	this.driverPath = new StringBuilder(Paths.get(".").toAbsolutePath().normalize().toString())
+			.append("/resources/chromedriver.exe").toString();
+        }
 	 } 
 	catch (IOException io) {
          io.printStackTrace();
