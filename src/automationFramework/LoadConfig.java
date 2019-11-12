@@ -17,20 +17,21 @@ public class LoadConfig
 		return env;
 	}
 
-
 	/**
 	 * @return the driverPath
 	 */
 	public String getDriverPath() {
 		return driverPath;
 	}
-
+	
+	/*This method read the config file for environment and store in env variable
+	driverPath = stores value for browser driver based on operating system.*/
+	
 	public LoadConfig()
 	{
 	try
 	{
 		InputStream input = new FileInputStream(Paths.get(".").toAbsolutePath().normalize().toString()+"/resources/config.properties");
-
         Properties prop = new Properties();
         // load the properties file
         prop.load(input);

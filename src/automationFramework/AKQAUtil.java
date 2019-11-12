@@ -9,8 +9,7 @@ public class AKQAUtil {
 	
 	
 	public static WebElement dynamicWait(WebDriver driver , WebElement element)
-	{
-		
+	{	
 		WebElement dynamicElement = (new WebDriverWait(driver, 10))
   			  .until(ExpectedConditions.elementToBeClickable(element));
 		

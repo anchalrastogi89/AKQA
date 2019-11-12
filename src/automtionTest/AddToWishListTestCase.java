@@ -20,6 +20,7 @@ public class AddToWishListTestCase {
 	WebDriver driver;
 	WebDriverWait wait;
 	
+	/*Initalize the driver and loads the website.*/
 	@BeforeTest
 	  public void SetDriver()
 	{
@@ -32,25 +33,22 @@ public class AddToWishListTestCase {
 	}
 	
 	@Test
-	  public void addToWishlist() throws InterruptedException {
-		
-		SearchPage searchPage = new SearchPage(driver);
+	  public void addToWishlist(){
 		String SkuId;
+		SearchPage searchPage = new SearchPage(driver);
 		Assert.assertTrue(searchPage.validateSearchPage());
 		SkuId = searchPage.getProductId();
 		ProductDetailPage productDetailPage = searchPage.clickProduct();
 		Assert.assertTrue(productDetailPage.validateProductDetailPage(SkuId));
-		productDetailPage.clickSaveToWishList();
-		Assert.assertTrue(productDetailPage.validateSaveDailog());
+		Assert.assertTrue(productDetailPage.clickSaveToWishList());
 		WishListPage wishListPage = productDetailPage.navigateToWishlistPage();
 		Assert.assertTrue(wishListPage.validateWishListlPage());
 		Assert.assertTrue(wishListPage.validateWishListItem(SkuId));
-		
 	  }
 	
 	@AfterTest
 	  public void afterTest() {
-		driver.close();
+		driver.close(); //Terminates the driver after execution.
 	  }
 
 }

@@ -19,13 +19,13 @@ WebDriver driver;
     
    
     public WishListPage(WebDriver driver){
-
         this.driver = driver;
         //This initElements method will create all WebElements
         PageFactory.initElements(driver, this);
 
     }
     
+    /*Validate Wish list page is loaded or not*/
     public boolean validateWishListlPage()
     {
     	if (AKQAUtil.dynamicWait(driver, printWishList).isDisplayed())
@@ -34,6 +34,7 @@ WebDriver driver;
     		return false;
     }
     
+    /* Validate for SKU ID and check that it is added in wish list or not*/
     public boolean validateWishListItem(String SkuId)
     {
     	if(productID.getText().contains(SkuId))

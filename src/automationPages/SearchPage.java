@@ -21,16 +21,16 @@ public class SearchPage {
     
     
     public SearchPage(WebDriver driver){
-
         this.driver = driver;
         //This initElements method will create all WebElements
         PageFactory.initElements(driver, this);
-
     }
     
+    /*Validate SearchPage is loaded or not*/
     public boolean validateSearchPage()
     {
-    	if (Integer.parseInt(searchCount.getText()) > 0)
+    	// If in search page count is greater than 0 then proceed else fail.
+    	if (Integer.parseInt(searchCount.getText()) > 0) 
     		return true;
     	else
     		return false;
@@ -38,14 +38,14 @@ public class SearchPage {
     
     public ProductDetailPage clickProduct()
     {
-    	productDetail.click();
+    	productDetail.click(); //Clicks on the first item
     	ProductDetailPage productDetailPage = new ProductDetailPage(driver);
     	return productDetailPage;
     }
     
     public String getProductId()
     {
+    	// This will return the SKU ID of the item for further validations
     	return productDetail.getAttribute("data-product-id");
-    	
     }
 }
